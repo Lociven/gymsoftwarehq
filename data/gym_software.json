@@ -1,0 +1,353 @@
+{
+ "_meta": {
+  "project": "gym software comparison seed",
+  "last_verified": "2026-07-07",
+  "verify_cadence": "weekly"
+ },
+ "tools": [
+  {
+   "name": "Mindbody",
+   "slug": "mindbody",
+   "role": "incumbent",
+   "best_for": [
+    "multi-location",
+    "wellness marketplaces",
+    "spas+fitness combined"
+   ],
+   "price_min_month": 139,
+   "price_max_month": 599,
+   "real_spend_note": "operators report $1,000+/mo after marketplace commission + payment markup + add-ons",
+   "target_segment": "established studios, chains",
+   "common_complaints": [
+    "price escalation / hidden fees",
+    "clunky dated UX",
+    "contract lock-in",
+    "AI-routed support"
+   ],
+   "affiliate": {
+    "type": "unknown",
+    "terms": "not confirmed — check partner page",
+    "recurring": null
+   },
+   "affiliate_link": ""
+  },
+  {
+   "name": "Zen Planner",
+   "slug": "zen-planner",
+   "role": "alternative",
+   "best_for": [
+    "martial arts",
+    "CrossFit boxes",
+    "small-mid gyms",
+    "billing-heavy ops"
+   ],
+   "price_note": "quote-based; Engage & Studio plans",
+   "target_segment": "small to mid gyms",
+   "common_complaints": [
+    "dated interface (per reviews)"
+   ],
+   "affiliate": {
+    "type": "recurring",
+    "terms": "up to 20% monthly for 12 months (15% first 5 refs, then 20%), Net-60",
+    "recurring": true
+   },
+   "affiliate_link": ""
+  },
+  {
+   "name": "PushPress",
+   "slug": "pushpress",
+   "role": "alternative",
+   "best_for": [
+    "CrossFit boxes",
+    "boutique gyms",
+    "new gyms"
+   ],
+   "target_segment": "boutique / CrossFit",
+   "common_complaints": [
+    "some reliability complaints"
+   ],
+   "affiliate": {
+    "type": "bounty",
+    "terms": "$250 after referred gym books & attends a free demo; unlimited referrals",
+    "recurring": false
+   },
+   "affiliate_link": ""
+  },
+  {
+   "name": "Wodify",
+   "slug": "wodify",
+   "role": "alternative",
+   "best_for": [
+    "CrossFit boxes",
+    "performance tracking"
+   ],
+   "target_segment": "CrossFit / functional fitness",
+   "common_complaints": [],
+   "affiliate": {
+    "type": "bounty",
+    "terms": "$100 on referral demo + $400 on becoming customer = $500; Net-60 gift cards",
+    "recurring": false
+   },
+   "affiliate_link": "https://refer.wodify.com/7gWVNN"
+  },
+  {
+   "name": "Gymdesk",
+   "slug": "gymdesk",
+   "role": "alternative",
+   "best_for": [
+    "small gyms",
+    "martial arts",
+    "budget-conscious owners"
+   ],
+   "price_min_month": 75,
+   "price_max_month": 200,
+   "target_segment": "small gyms / martial arts",
+   "common_complaints": [],
+   "affiliate": {
+    "type": "recurring",
+    "terms": "partner program with recurring commission (confirm rate)",
+    "recurring": true
+   },
+   "affiliate_link": ""
+  },
+  {
+   "name": "Glofox (ABC Fitness)",
+   "slug": "glofox",
+   "role": "alternative",
+   "best_for": [
+    "boutique studios",
+    "class-based",
+    "branded member app"
+   ],
+   "price_min_month": 110,
+   "price_max_month": 600,
+   "real_spend_note": "quote-only, no public pricing; tiers ~$80-110 / ~$190-250 / ~$400-600+; annual contracts + setup fees",
+   "target_segment": "boutique class-based",
+   "common_complaints": [
+    "documented ~70% mid-contract price increase reported by reviewers",
+    "no transparent pricing",
+    "annual lock-in"
+   ],
+   "affiliate": {
+    "type": "unknown",
+    "terms": "affiliate program exists — confirm recurring vs bounty",
+    "recurring": null
+   },
+   "affiliate_link": ""
+  },
+  {
+   "name": "Vibefam",
+   "slug": "vibefam",
+   "role": "alternative",
+   "best_for": [
+    "Pilates",
+    "boutique studios",
+    "Mindbody migrants",
+    "yoga studio"
+   ],
+   "target_segment": "boutique / Pilates",
+   "common_complaints": [],
+   "affiliate": {
+    "type": "unknown",
+    "terms": "confirm at partner page",
+    "recurring": null
+   },
+   "affiliate_link": ""
+  },
+  {
+   "name": "TeamUp",
+   "slug": "teamup",
+   "role": "alternative",
+   "best_for": [
+    "class-based studios",
+    "bootcamps",
+    "budget",
+    "predictable pricing"
+   ],
+   "price_min_month": 104,
+   "price_max_month": 149,
+   "real_spend_note": "priced by active customers (~$104/mo up to 100); no member limits on higher tiers",
+   "target_segment": "class-based / budget",
+   "common_complaints": [],
+   "affiliate": {
+    "type": "recurring",
+    "terms": "ongoing % of referred client revenue (confirm rate)",
+    "recurring": true
+   },
+   "affiliate_link": ""
+  },
+  {
+   "name": "Gymcatch",
+   "slug": "gymcatch",
+   "role": "alternative",
+   "best_for": [
+    "independent instructors",
+    "small class businesses",
+    "yoga studio"
+   ],
+   "target_segment": "solo / small class ops",
+   "common_complaints": [],
+   "affiliate": {
+    "type": "recurring",
+    "terms": "recurring affiliate commission on signups",
+    "recurring": true
+   },
+   "affiliate_link": ""
+  },
+  {
+   "name": "Mariana Tek",
+   "slug": "mariana-tek",
+   "role": "alternative",
+   "best_for": [
+    "boutique fitness studio",
+    "spin / cycling studio",
+    "class-based",
+    "premium experience"
+   ],
+   "price_min_month": 179,
+   "price_max_month": 599,
+   "real_spend_note": "custom ~$179-285/mo (up to ~$599); $1,500 setup fee incl. implementation specialist",
+   "target_segment": "premium boutique / class-based",
+   "common_complaints": [
+    "performance lag reported",
+    "extra costs for some features/integrations",
+    "weak personal-training support",
+    "expensive"
+   ],
+   "affiliate": {
+    "type": "unknown",
+    "terms": "confirm at partner page",
+    "recurring": null
+   },
+   "affiliate_link": ""
+  },
+  {
+   "name": "ClubReady",
+   "slug": "clubready",
+   "role": "alternative",
+   "best_for": [
+    "multi-location chain",
+    "franchise gym",
+    "health club",
+    "CRM-driven marketing"
+   ],
+   "price_min_month": 149,
+   "price_max_month": 499,
+   "target_segment": "clubs / franchises / multi-location",
+   "common_complaints": [
+    "dated UI ('looks like 1999')",
+    "check-in system can't block past-due clients",
+    "slow support (1hr+ waits)"
+   ],
+   "affiliate": {
+    "type": "unknown",
+    "terms": "confirm at partner page",
+    "recurring": null
+   },
+   "affiliate_link": ""
+  },
+  {
+   "name": "Trainerize (ABC Trainerize)",
+   "slug": "trainerize",
+   "role": "alternative",
+   "best_for": [
+    "personal trainer (solo)",
+    "online coaching",
+    "nutrition coaching"
+   ],
+   "price_min_month": 120,
+   "price_max_month": 165,
+   "real_spend_note": "Pro 50 ~$120/mo before add-ons; ~$165/mo with nutrition + branded delivery",
+   "target_segment": "online personal trainers / coaches",
+   "common_complaints": [
+    "2026 pricing changes / add-ons"
+   ],
+   "affiliate": {
+    "type": "unknown",
+    "terms": "confirm at partner page",
+    "recurring": null
+   },
+   "affiliate_link": ""
+  },
+  {
+   "name": "Kicksite",
+   "slug": "kicksite",
+   "role": "alternative",
+   "best_for": [
+    "martial arts",
+    "dojo",
+    "karate / taekwondo schools"
+   ],
+   "price_min_month": 99,
+   "price_max_month": 298,
+   "target_segment": "martial arts schools",
+   "common_complaints": [],
+   "affiliate": {
+    "type": "unknown",
+    "terms": "confirm at partner page",
+    "recurring": null
+   },
+   "affiliate_link": ""
+  },
+  {
+   "name": "FLiiP",
+   "slug": "fliip",
+   "role": "alternative",
+   "best_for": [
+    "boutique fitness studio",
+    "small gyms",
+    "class-based"
+   ],
+   "price_min_month": 129,
+   "price_max_month": 269,
+   "target_segment": "boutique / small gyms",
+   "common_complaints": [],
+   "affiliate": {
+    "type": "unknown",
+    "terms": "affiliate/referral — confirm",
+    "recurring": null
+   },
+   "affiliate_link": ""
+  },
+  {
+   "name": "WodGuru",
+   "slug": "wodguru",
+   "role": "alternative",
+   "best_for": [
+    "CrossFit boxes",
+    "small gyms",
+    "budget-conscious owners"
+   ],
+   "price_min_month": 0,
+   "price_max_month": 149,
+   "real_spend_note": "free up to 10 members; then ~$1/member/mo, capped at $149/mo",
+   "target_segment": "budget / CrossFit / small",
+   "common_complaints": [],
+   "affiliate": {
+    "type": "unknown",
+    "terms": "affiliate program advertised — confirm recurring vs bounty",
+    "recurring": null
+   },
+   "affiliate_link": ""
+  }
+ ],
+ "sub_niches_for_best_for_pages": [
+  "CrossFit box",
+  "Pilates studio",
+  "yoga studio",
+  "martial arts / BJJ gym",
+  "boutique fitness studio",
+  "personal trainer (solo)",
+  "climbing gym",
+  "bootcamp / group training",
+  "dance studio",
+  "spin / cycling studio",
+  "multi-location chain",
+  "24/7 access gym"
+ ],
+ "page_templates": {
+  "vs": "[A] vs [B] for {sub_niche}",
+  "best_for": "Best gym software for {sub_niche} (2026)",
+  "pricing_data": "{Tool} pricing 2026"
+ }
+}
