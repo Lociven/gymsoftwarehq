@@ -53,7 +53,7 @@ def shell(title,desc,body,ld=None):
     s=f'<script type="application/ld+json">{json.dumps(ld)}</script>' if ld else ""
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(title)}</title><meta name="description" content="{esc(desc)}"><link rel="canonical" href="https://{DOMAIN}/{slug(title)}.html"><style>{CSS}</style>{s}</head><body>
-<header class="site"><div class="wrap"><a href="index.html"><strong>{BRAND}</strong></a><span class="muted">Independent gym software reviews · {YEAR}</span></div></header>
+<header class="site"><div class="wrap"><a href="index.html"><strong>{BRAND}</strong></a><a href="finder.html" style="color:var(--accent);font-weight:600">🔍 Find your software</a> <span class="muted">· {YEAR}</span></div></header>
 <main class="wrap">{body}<footer>© {YEAR} {BRAND}. Independent — not affiliated with any vendor.</footer></main></body></html>'''
 
 def cost_para(t):
@@ -156,6 +156,66 @@ for title,h in pages:
     fn="index.html" if title.startswith(BRAND) else slug(title)+".html"
     open(os.path.join(OUT,fn),"w",encoding="utf-8").write(h)
 print(f"Generated {len(pages)} pages")
+
+
+# --- interactive software finder ---
+def _fprice(t):
+    lo=t.get("price_min_month"); hi=t.get("price_max_month")
+    if lo is not None and hi:
+        return ("free" if lo==0 else "$%d"%lo)+"-$%d/mo"%hi
+    return t.get("price_note","Quote-based")
+_fdata=[]
+for t in TOOLS:
+    link = t.get("affiliate_link") or (slug(t["name"]+" pricing "+str(YEAR)+" - real costs and fees")+".html")
+    _fdata.append({"name":t["name"],"price":_fprice(t),"pmin":(t.get("price_min_month") if t.get("price_min_month") is not None else 200),
+        "best_for":[b.lower() for b in t.get("best_for",[])],"seg":(t.get("target_segment") or "").lower(),
+        "complaints":[c.lower() for c in t.get("common_complaints",[])],"note":t.get("real_spend_note",""),
+        "aff":bool(t.get("affiliate_link")),"link":link})
+_fjson=json.dumps(_fdata)
+_ftitle="Gym software finder - find the right tool for your studio (%d)"%YEAR
+_fdesc="Answer 3 questions and get matched to the best gym or studio software for your business type, size, and priorities. Free interactive tool."
+_fbody=('<h1>Gym software finder</h1>'
+ '<p class="sub">Answer 3 quick questions - we\'ll match you to the best-fit tools from our '+str(len(TOOLS))+'-platform database, with real pricing.</p>'+DISC+
+ '<div class="card">'
+ '<h3>1. What type of business?</h3><select id="q_type">'
+ '<option value="crossfit">CrossFit box</option><option value="yoga">Yoga studio</option>'
+ '<option value="pilates">Pilates studio</option><option value="martial">Martial arts / BJJ</option>'
+ '<option value="boutique">Boutique fitness studio</option><option value="personal">Personal trainer / online coaching</option>'
+ '<option value="multi-location">Multi-location / franchise</option><option value="class-based">General class-based studio</option></select>'
+ '<h3>2. How big are you?</h3><select id="q_size">'
+ '<option value="solo">Solo / just starting</option><option value="small">Small (under 100 members)</option>'
+ '<option value="mid">Mid-size</option><option value="large">Large / multi-site</option></select>'
+ '<h3>3. Top priority?</h3><select id="q_pri">'
+ '<option value="budget">Lowest cost</option><option value="transparency">Transparent, predictable pricing</option>'
+ '<option value="features">Most features / premium experience</option></select>'
+ '<a class="cta" href="#" onclick="runFinder();return false;">Show my matches →</a></div>'
+ '<div id="fresult"></div>'
+ '<script>const TOOLS='+_fjson+';'
+ 'function runFinder(){'
+ 'var ty=document.getElementById("q_type").value,sz=document.getElementById("q_size").value,pr=document.getElementById("q_pri").value;'
+ 'var kw={crossfit:["crossfit"],yoga:["yoga"],pilates:["pilates"],martial:["martial","dojo","bjj","karate"],boutique:["boutique"],personal:["personal","online coaching","trainer"],"multi-location":["multi-location","franchise","chain","health club"],"class-based":["class-based","class ","bootcamp"]}[ty]||[ty];'
+ 'var scored=TOOLS.map(function(t){var s=0;var hay=t.best_for.join(" ")+" "+t.seg;'
+ 'kw.forEach(function(k){if(hay.indexOf(k)>-1)s+=5;});'
+ 'if(sz=="solo"||sz=="small"){if(t.pmin<=110)s+=2;if(t.pmin>=250)s-=2;}'
+ 'if(sz=="large"){if(hay.indexOf("multi-location")>-1||hay.indexOf("chain")>-1||hay.indexOf("franchise")>-1)s+=3;if(t.pmin>=150)s+=1;}'
+ 'var badprice=t.complaints.join(" ");'
+ 'if(pr=="budget"){s+= t.pmin<=90?3:(t.pmin<=150?1:-1);}'
+ 'if(pr=="transparency"){if(badprice.indexOf("transparent")>-1||badprice.indexOf("hidden")>-1||badprice.indexOf("escalation")>-1||badprice.indexOf("increase")>-1||t.price.indexOf("Quote")>-1)s-=3;else s+=2;}'
+ 'if(pr=="features"){if(t.pmin>=150)s+=2;}'
+ 'return {t:t,s:s};}).sort(function(a,b){return b.s-a.s;});'
+ 'var top=scored.filter(function(x){return x.s>0;}).slice(0,4);if(top.length==0)top=scored.slice(0,3);'
+ 'var h="<h2>Your top matches</h2>";top.forEach(function(x,i){var t=x.t;'
+ 'h+="<div class=card><h3>"+(i+1)+". "+t.name+"</h3><p class=muted>"+t.price+(t.note?" - "+t.note:"")+"</p>";'
+ 'h+="<a class=cta href=\""+t.link+"\""+(t.aff?" rel=\"sponsored nofollow\"":"")+">See "+t.name+" details →</a></div>";});'
+ 'h+="<p class=method>Matches are generated from published pricing and best-fit tags. Always confirm current pricing on the vendor site. Some links are affiliate links.</p>";'
+ 'document.getElementById("fresult").innerHTML=h;document.getElementById("fresult").scrollIntoView({behavior:"smooth"});}'
+ '</script>')
+_fqas=[("How do I choose gym software?","Match the tool to your business type (CrossFit, yoga, martial arts, etc.), your size, and your top priority - cost, pricing transparency, or features. Our finder does this automatically from real pricing data."),
+ ("What is the cheapest gym software?","Budget options start free-to-low for very small operations (e.g. per-member pricing), while full class-based platforms run $100-400+/mo. Use the finder with 'lowest cost' selected."),
+ ("Which gym software has transparent pricing?","Some vendors publish clear per-tier pricing while others are quote-only with add-ons; the finder down-ranks tools known for hidden fees or mid-contract increases when you pick 'transparent pricing'.")]
+open(os.path.join(OUT,"finder.html"),"w",encoding="utf-8").write(shell(_ftitle,_fdesc,_fbody,faq_ld(_fqas)))
+print("finder.html written")
+
 
 # --- sitemap.xml + robots.txt ---
 _files = sorted(f for f in os.listdir(OUT) if f.endswith(".html"))
