@@ -329,6 +329,163 @@
     "recurring": null
    },
    "affiliate_link": ""
+  },
+  {
+   "name": "Momence",
+   "slug": "momence",
+   "role": "alternative",
+   "best_for": [
+    "yoga studio",
+    "Pilates studio",
+    "boutique fitness studio",
+    "wellness"
+   ],
+   "price_note": "custom pricing; 2.5% transaction fee on Pro tier (free Basic tier charges 5% operator + 4% client)",
+   "target_segment": "yoga/pilates/wellness studios",
+   "common_complaints": [
+    "poor customer service",
+    "support lacks technical depth; slow developer response"
+   ],
+   "affiliate": {
+    "type": "unknown",
+    "terms": "confirm at partner page",
+    "recurring": null
+   },
+   "affiliate_link": ""
+  },
+  {
+   "name": "Arketa",
+   "slug": "arketa",
+   "role": "alternative",
+   "best_for": [
+    "yoga studio",
+    "Pilates studio",
+    "solo instructors",
+    "boutique fitness studio"
+   ],
+   "price_min_month": 49,
+   "price_max_month": 124,
+   "real_spend_note": "Individual $49 / Growth $83 / Suite $124, plus 3% transaction fee + Stripe fees; Studio plans quote-only",
+   "target_segment": "yoga/pilates studios & solo",
+   "common_complaints": [
+    "prices rise fast when adding features",
+    "reporting unfinished / not market-ready",
+    "live support is a shared Zoom (no privacy)"
+   ],
+   "affiliate": {
+    "type": "unknown",
+    "terms": "confirm at partner page",
+    "recurring": null
+   },
+   "affiliate_link": ""
+  },
+  {
+   "name": "Walla",
+   "slug": "walla",
+   "role": "alternative",
+   "best_for": [
+    "boutique fitness studio",
+    "Pilates studio",
+    "yoga studio",
+    "multi-location"
+   ],
+   "price_min_month": 220,
+   "price_max_month": 679,
+   "real_spend_note": "Starter $220 / Core $390 / Pro $679 per location (monthly); Stripe direct, no processing markup, but key features cost extra",
+   "target_segment": "premium boutique / multi-location",
+   "common_complaints": [
+    "expensive, especially higher tiers",
+    "important features cost extra"
+   ],
+   "affiliate": {
+    "type": "unknown",
+    "terms": "confirm at partner page",
+    "recurring": null
+   },
+   "affiliate_link": ""
+  },
+  {
+   "name": "Punchpass",
+   "slug": "punchpass",
+   "role": "alternative",
+   "best_for": [
+    "yoga studio",
+    "dance studio",
+    "small class studios",
+    "budget-conscious owners"
+   ],
+   "price_note": "budget-friendly, tiered by active students",
+   "target_segment": "small class-based studios / budget",
+   "common_complaints": [
+    "limited customization / feature depth",
+    "no dedicated member app; basic mobile experience"
+   ],
+   "affiliate": {
+    "type": "unknown",
+    "terms": "confirm at partner page",
+    "recurring": null
+   },
+   "affiliate_link": ""
+  },
+  {
+   "name": "bsport",
+   "slug": "bsport",
+   "role": "alternative",
+   "best_for": [
+    "boutique fitness studio",
+    "Pilates studio",
+    "yoga studio",
+    "wellness"
+   ],
+   "price_note": "quote-based (free demo for custom quote); strong in Europe",
+   "target_segment": "boutique fitness & wellness",
+   "common_complaints": [],
+   "affiliate": {
+    "type": "unknown",
+    "terms": "confirm at partner page",
+    "recurring": null
+   },
+   "affiliate_link": ""
+  },
+  {
+   "name": "Clubworx",
+   "slug": "clubworx",
+   "role": "alternative",
+   "best_for": [
+    "martial arts",
+    "gyms",
+    "bootcamp / group training",
+    "budget-conscious owners"
+   ],
+   "price_note": "tiered plans; scalable for gyms, martial arts & bootcamps",
+   "target_segment": "gyms / martial arts / bootcamps",
+   "common_complaints": [],
+   "affiliate": {
+    "type": "unknown",
+    "terms": "confirm at partner page",
+    "recurring": null
+   },
+   "affiliate_link": ""
+  },
+  {
+   "name": "Exercise.com",
+   "slug": "exercise-com",
+   "role": "alternative",
+   "best_for": [
+    "personal trainer (solo)",
+    "gyms",
+    "online coaching",
+    "branded member app"
+   ],
+   "price_note": "custom pricing; all-in-one with custom-branded apps",
+   "target_segment": "gyms / PT businesses wanting branded apps",
+   "common_complaints": [],
+   "affiliate": {
+    "type": "unknown",
+    "terms": "confirm at partner page",
+    "recurring": null
+   },
+   "affiliate_link": ""
   }
  ],
  "sub_niches_for_best_for_pages": [
