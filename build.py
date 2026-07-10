@@ -46,14 +46,19 @@ def badge(t):
     a=t.get("affiliate",{}).get("type")
     return '<span class="badge rec">recurring commission</span>' if a=="recurring" else ('<span class="badge bounty">signup bounty</span>' if a=="bounty" else "")
 def cta(t):
-    link=t.get("affiliate_link") or "#"
-    return f'<a class="cta" href="{esc(link)}" rel="sponsored nofollow">Check {esc(t["name"])} pricing &amp; book a free demo →</a>'
+    aff=t.get("affiliate_link")
+    if aff:
+        return f'<a class="cta" href="{esc(aff)}" rel="sponsored nofollow">Check {esc(t["name"])} pricing &amp; book a free demo →</a>'
+    web=t.get("website")
+    if web:
+        return f'<a class="cta" href="{esc(web)}" rel="nofollow" target="_blank">Visit {esc(t["name"])} &amp; check current pricing →</a>'
+    return ''
 def faq_ld(qas): return {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in qas]}
 def shell(title,desc,body,ld=None):
     s=f'<script type="application/ld+json">{json.dumps(ld)}</script>' if ld else ""
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(title)}</title><meta name="description" content="{esc(desc)}"><link rel="canonical" href="https://{DOMAIN}/{slug(title)}.html"><style>{CSS}</style>{s}</head><body>
-<header class="site"><div class="wrap"><a href="index.html"><strong>{BRAND}</strong></a><a href="finder.html" style="color:var(--accent);font-weight:600">🔍 Find your software</a> <span class="muted">· {YEAR}</span></div></header>
+<header class="site"><div class="wrap"><a href="index.html"><strong>{BRAND}</strong></a><a href="finder.html" style="color:var(--accent);font-weight:600">&#128269; Find your software</a> <span class="muted">· {YEAR}</span></div></header>
 <main class="wrap">{body}<footer>© {YEAR} {BRAND}. Independent — not affiliated with any vendor.</footer></main></body></html>'''
 
 def cost_para(t):

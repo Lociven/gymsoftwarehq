@@ -29,7 +29,8 @@
     "terms": "not confirmed — check partner page",
     "recurring": null
    },
-   "affiliate_link": ""
+   "affiliate_link": "",
+   "website": "https://www.mindbody.io"
   },
   {
    "name": "Zen Planner",
@@ -51,7 +52,8 @@
     "terms": "up to 20% monthly for 12 months (15% first 5 refs, then 20%), Net-60",
     "recurring": true
    },
-   "affiliate_link": ""
+   "affiliate_link": "",
+   "website": "https://zenplanner.com"
   },
   {
    "name": "PushPress",
@@ -71,7 +73,8 @@
     "terms": "$250 after referred gym books & attends a free demo; unlimited referrals",
     "recurring": false
    },
-   "affiliate_link": ""
+   "affiliate_link": "",
+   "website": "https://www.pushpress.com"
   },
   {
    "name": "Wodify",
@@ -88,7 +91,8 @@
     "terms": "$100 on referral demo + $400 on becoming customer = $500; Net-60 gift cards",
     "recurring": false
    },
-   "affiliate_link": "https://refer.wodify.com/7gWVNN"
+   "affiliate_link": "https://refer.wodify.com/7gWVNN",
+   "website": "https://www.wodify.com"
   },
   {
    "name": "Gymdesk",
@@ -108,7 +112,8 @@
     "terms": "partner program with recurring commission (confirm rate)",
     "recurring": true
    },
-   "affiliate_link": ""
+   "affiliate_link": "",
+   "website": "https://gymdesk.com"
   },
   {
    "name": "Glofox (ABC Fitness)",
@@ -133,7 +138,8 @@
     "terms": "affiliate program exists — confirm recurring vs bounty",
     "recurring": null
    },
-   "affiliate_link": ""
+   "affiliate_link": "",
+   "website": "https://www.glofox.com"
   },
   {
    "name": "Vibefam",
@@ -152,7 +158,8 @@
     "terms": "confirm at partner page",
     "recurring": null
    },
-   "affiliate_link": ""
+   "affiliate_link": "",
+   "website": "https://www.vibefam.com"
   },
   {
    "name": "TeamUp",
@@ -174,7 +181,8 @@
     "terms": "ongoing % of referred client revenue (confirm rate)",
     "recurring": true
    },
-   "affiliate_link": ""
+   "affiliate_link": "",
+   "website": "https://goteamup.com"
   },
   {
    "name": "Gymcatch",
@@ -192,7 +200,8 @@
     "terms": "recurring affiliate commission on signups",
     "recurring": true
    },
-   "affiliate_link": ""
+   "affiliate_link": "",
+   "website": "https://www.gymcatch.com"
   },
   {
    "name": "Mariana Tek",
@@ -219,7 +228,8 @@
     "terms": "confirm at partner page",
     "recurring": null
    },
-   "affiliate_link": ""
+   "affiliate_link": "",
+   "website": "https://www.marianatek.com"
   },
   {
    "name": "ClubReady",
@@ -244,7 +254,8 @@
     "terms": "confirm at partner page",
     "recurring": null
    },
-   "affiliate_link": ""
+   "affiliate_link": "",
+   "website": "https://www.clubready.com"
   },
   {
    "name": "Trainerize (ABC Trainerize)",
@@ -267,7 +278,8 @@
     "terms": "confirm at partner page",
     "recurring": null
    },
-   "affiliate_link": ""
+   "affiliate_link": "",
+   "website": "https://www.trainerize.com"
   },
   {
    "name": "Kicksite",
@@ -287,7 +299,8 @@
     "terms": "confirm at partner page",
     "recurring": null
    },
-   "affiliate_link": ""
+   "affiliate_link": "",
+   "website": "https://kicksite.com"
   },
   {
    "name": "FLiiP",
@@ -307,7 +320,8 @@
     "terms": "affiliate/referral — confirm",
     "recurring": null
    },
-   "affiliate_link": ""
+   "affiliate_link": "",
+   "website": "https://fliipapp.com"
   },
   {
    "name": "WodGuru",
@@ -328,7 +342,8 @@
     "terms": "affiliate program advertised — confirm recurring vs bounty",
     "recurring": null
    },
-   "affiliate_link": ""
+   "affiliate_link": "",
+   "website": "https://wodguru.com"
   },
   {
    "name": "Momence",
@@ -351,7 +366,8 @@
     "terms": "confirm at partner page",
     "recurring": null
    },
-   "affiliate_link": ""
+   "affiliate_link": "",
+   "website": "https://momence.com"
   },
   {
    "name": "Arketa",
@@ -377,7 +393,8 @@
     "terms": "confirm at partner page",
     "recurring": null
    },
-   "affiliate_link": ""
+   "affiliate_link": "",
+   "website": "https://www.arketa.co"
   },
   {
    "name": "Walla",
@@ -402,7 +419,8 @@
     "terms": "confirm at partner page",
     "recurring": null
    },
-   "affiliate_link": ""
+   "affiliate_link": "",
+   "website": "https://www.hellowalla.com"
   },
   {
    "name": "Punchpass",
@@ -425,7 +443,8 @@
     "terms": "confirm at partner page",
     "recurring": null
    },
-   "affiliate_link": ""
+   "affiliate_link": "",
+   "website": "https://punchpass.com"
   },
   {
    "name": "bsport",
@@ -445,7 +464,8 @@
     "terms": "confirm at partner page",
     "recurring": null
    },
-   "affiliate_link": ""
+   "affiliate_link": "",
+   "website": "https://bsport.io"
   },
   {
    "name": "Clubworx",
@@ -465,7 +485,8 @@
     "terms": "confirm at partner page",
     "recurring": null
    },
-   "affiliate_link": ""
+   "affiliate_link": "",
+   "website": "https://clubworx.com"
   },
   {
    "name": "Exercise.com",
@@ -485,7 +506,8 @@
     "terms": "confirm at partner page",
     "recurring": null
    },
-   "affiliate_link": ""
+   "affiliate_link": "",
+   "website": "https://www.exercise.com"
   }
  ],
  "sub_niches_for_best_for_pages": [
