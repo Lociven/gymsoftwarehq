@@ -338,11 +338,11 @@
    "target_segment": "budget / CrossFit / small",
    "common_complaints": [],
    "affiliate": {
-    "type": "unknown",
-    "terms": "affiliate program advertised — confirm recurring vs bounty",
-    "recurring": null
+    "type": "recurring",
+    "terms": "20% of every licence payment, recurring for as long as the referred gym subscribes; no cap",
+    "recurring": true
    },
-   "affiliate_link": "",
+   "affiliate_link": "https://wod.guru/ref/8wXt5JOW",
    "website": "https://wodguru.com"
   },
   {
