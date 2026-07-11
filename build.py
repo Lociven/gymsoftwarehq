@@ -56,9 +56,9 @@ def cta(t):
 def faq_ld(qas): return {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in qas]}
 def shell(title,desc,body,ld=None):
     s=f'<script type="application/ld+json">{json.dumps(ld)}</script>' if ld else ""
-    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTUiIGZpbGw9IiMwZjE4MzAiLz48dGV4dCB4PSIzMiIgeT0iNDUiIGZvbnQtZmFtaWx5PSJEZWphVnUgU2FucyIgZm9udC1zaXplPSIzMyIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzNiYTNmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+SFE8L3RleHQ+PC9zdmc+"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(title)}</title><meta name="description" content="{esc(desc)}"><link rel="canonical" href="https://{DOMAIN}/{slug(title)}.html"><style>{CSS}</style>{s}</head><body>
-<header class="site"><div class="wrap"><a href="index.html"><strong>{BRAND}</strong></a><a href="finder.html" style="color:var(--accent);font-weight:600">&#128269; Find your software</a> <span class="muted">· {YEAR}</span></div></header>
+<header class="site"><div class="wrap"><a href="index.html" style="font-weight:800;letter-spacing:2px;font-size:19px;color:#e8edf6;text-decoration:none">GYMSOFTWARE<span style="color:#3ba3ff">HQ</span></a><a href="finder.html" style="color:var(--accent);font-weight:600">&#128269; Find your software</a> <span class="muted">· {YEAR}</span></div></header>
 <main class="wrap">{body}<footer>© {YEAR} {BRAND}. Independent — not affiliated with any vendor.</footer></main></body></html>'''
 
 def cost_para(t):
