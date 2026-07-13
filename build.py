@@ -59,7 +59,7 @@ def shell(title,desc,body,ld=None):
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTUiIGZpbGw9IiMwZjE4MzAiLz48dGV4dCB4PSIzMiIgeT0iNDUiIGZvbnQtZmFtaWx5PSJEZWphVnUgU2FucyIgZm9udC1zaXplPSIzMyIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzNiYTNmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+SFE8L3RleHQ+PC9zdmc+"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(title)}</title><meta name="description" content="{esc(desc)}"><link rel="canonical" href="https://{DOMAIN}/{slug(title)}.html"><style>{CSS}</style>{s}</head><body>
 <header class="site"><div class="wrap"><a href="index.html" style="font-weight:800;letter-spacing:2px;font-size:19px;color:#e8edf6;text-decoration:none">GYMSOFTWARE<span style="color:#3ba3ff">HQ</span></a><a href="finder.html" style="color:var(--accent);font-weight:600">&#128269; Find your software</a> <span class="muted">· {YEAR}</span></div></header>
-<main class="wrap">{body}<footer>© {YEAR} {BRAND}. Independent — not affiliated with any vendor.</footer></main></body></html>'''
+<main class="wrap">{body}<footer>© {YEAR} {BRAND}. Independent — not affiliated with any vendor. · <a href="about.html">About</a> · <a href="affiliate-disclosure.html">Disclosure</a> · <a href="privacy-policy.html">Privacy</a></footer></main></body></html>'''
 
 def cost_para(t):
     rn=t.get("real_spend_note")
@@ -151,11 +151,22 @@ for t in TOOLS: pricing(t)
 # index + privacy + disclosure pages
 links="".join(f'<li><a href="{slug(tt)}.html">{esc(tt)}</a></li>' for tt,_ in pages)
 add(f"{BRAND} — Independent gym software comparisons","Compare gym and studio management software on real pricing and owner feedback.",
-    f"<h1>{BRAND}</h1><p class='sub'>Independent gym &amp; studio software comparisons — real pricing, real owner feedback, no vendor spin.</p><p>We help gym and studio owners cut through opaque pricing and marketing claims. Every guide is built from published pricing and aggregated owner reviews.</p><h2>All guides ({len(pages)})</h2><ul>{links}</ul><p class='muted'><a href='disclosure.html'>Affiliate disclosure</a> · <a href='privacy.html'>Privacy policy</a></p>")
+    f"<h1>{BRAND}</h1><p class='sub'>Independent gym &amp; studio software comparisons — real pricing, real owner feedback, no vendor spin.</p><p>We help gym and studio owners cut through opaque pricing and marketing claims. Every guide is built from published pricing and aggregated owner reviews.</p><h2>All guides ({len(pages)})</h2><ul>{links}</ul><p class='muted'><a href='about.html'>About</a> · <a href='affiliate-disclosure.html'>Affiliate disclosure</a> · <a href='privacy-policy.html'>Privacy policy</a></p>")
 add("Affiliate disclosure","How GymSoftwareHQ makes money and how that affects our rankings.",
     f"<h1>Affiliate disclosure</h1><p>{BRAND} is reader-supported. Some outbound links to software vendors are affiliate or referral links, meaning we may earn a commission or bounty if you sign up through them — at no additional cost to you.</p><p>This never changes our rankings. We rank tools on features, real pricing and aggregated owner feedback, not on how much a vendor pays. Where a tool has no affiliate program, we still include it if it's the right fit. In line with FTC guidance, affiliate links are marked and this disclosure appears on every guide.</p>")
 add("Privacy policy",f"{BRAND} privacy policy.",
     f"<h1>Privacy policy</h1><p>{BRAND} does not collect personal information beyond standard, anonymised web analytics used to understand which guides are useful. We do not sell data. Outbound affiliate links may set cookies governed by the destination vendor's own privacy policy. Questions: contact us via the site.</p>")
+
+about_body=("<h1>About GymSoftwareHQ</h1>"
+"<p class='sub'>Independent gym &amp; studio software comparisons — real pricing, no vendor spin.</p>"
+"<p>GymSoftwareHQ is an independent resource that helps gym, studio and boutique-fitness owners choose management software without the marketing fog. Pricing in this category is notoriously opaque — quoted rates balloon once payment processing, marketplace commissions and paid add-ons stack up. We exist to surface the real numbers.</p>"
+"<h2>How we research</h2>"
+"<p>Every guide is built from published vendor pricing, feature sets, and recurring themes in public owner reviews and community discussions (Reddit, G2, Capterra). We note when figures were last checked and always tell you to confirm on the vendor site before buying, because prices change often.</p>"
+"<h2>How we stay independent</h2>"
+"<p>Some outbound links are affiliate or referral links, meaning we may earn a commission or bounty if you sign up through them — at no extra cost to you. This never changes our rankings: we rank tools on features, real pricing and aggregated owner feedback, never on payout size. Tools with no affiliate program are still included when they fit. See our <a href='affiliate-disclosure.html'>affiliate disclosure</a>.</p>"
+"<h2>Contact</h2>"
+"<p>Questions, corrections, or a pricing update we missed? Email <a href='mailto:liwjjangs@gmail.com'>liwjjangs@gmail.com</a>.</p>")
+add("About","About GymSoftwareHQ — who we are, how we research gym software, and how we stay independent.",about_body)
 
 for title,h in pages:
     fn="index.html" if title.startswith(BRAND) else slug(title)+".html"
