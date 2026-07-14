@@ -274,11 +274,11 @@
     "2026 pricing changes / add-ons"
    ],
    "affiliate": {
-    "type": "unknown",
-    "terms": "confirm at partner page",
-    "recurring": null
+    "type": "recurring",
+    "terms": "15% recurring commission on paid subscriptions + add-ons, for the lifetime of the account (90-day cookie); via PartnerStack",
+    "recurring": true
    },
-   "affiliate_link": "",
+   "affiliate_link": "https://getstarted.trainerize.com/5nbr1per7246",
    "website": "https://www.trainerize.com"
   },
   {
