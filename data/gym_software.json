@@ -1,7 +1,7 @@
 {
   "_meta": {
     "project": "gym software comparison seed",
-    "last_verified": "2026-07-20",
+    "last_verified": "2026-07-29",
     "verify_cadence": "weekly"
   },
   "tools": [
@@ -14,8 +14,8 @@
         "wellness marketplaces",
         "spas+fitness combined"
       ],
-      "price_min_month": 139,
-      "price_max_month": 599,
+      "price_min_month": 99,
+      "price_max_month": 699,
       "real_spend_note": "operators report $1,000+/mo after marketplace commission + payment markup + add-ons",
       "target_segment": "established studios, chains",
       "common_complaints": [
@@ -30,7 +30,8 @@
         "recurring": null
       },
       "affiliate_link": "",
-      "website": "https://www.mindbody.io"
+      "website": "https://www.mindbody.io",
+      "price_note": "per-location; Starter $99–159, Accelerate ~$259–279, Ultimate $499, Ultimate Plus $699+ (verified vendor/Capterra 2026-07)"
     },
     {
       "name": "Zen Planner",
