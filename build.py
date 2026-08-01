@@ -43,6 +43,12 @@ def price(t):
         lo=t["price_min_month"]; return (f"${lo}–${t['price_max_month']}/mo" if lo else f"free–${t['price_max_month']}/mo")
     return t.get("price_note","Quote-based")
 def badge(t):
+    # Only disclose a commercial relationship we actually have. A tool with an
+    # affiliate *type* but no live affiliate_link is a program we have not joined
+    # (or that is still pending approval) — badging it claims a relationship that
+    # does not exist and invites the "rankings follow payouts" inference.
+    if not t.get("affiliate_link"):
+        return ""
     a=t.get("affiliate",{}).get("type")
     return '<span class="badge rec">recurring commission</span>' if a=="recurring" else ('<span class="badge bounty">signup bounty</span>' if a=="bounty" else "")
 def cta(t):
