@@ -64,7 +64,7 @@ def shell(title,desc,body,ld=None):
     s=f'<script type="application/ld+json">{json.dumps(ld)}</script>' if ld else ""
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTUiIGZpbGw9IiMwZjE4MzAiLz48dGV4dCB4PSIzMiIgeT0iNDUiIGZvbnQtZmFtaWx5PSJEZWphVnUgU2FucyIgZm9udC1zaXplPSIzMyIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzNiYTNmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+SFE8L3RleHQ+PC9zdmc+"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(title)}</title><meta name="description" content="{esc(desc)}"><link rel="canonical" href="https://{DOMAIN}/{slug(title)}.html"><style>{CSS}</style>{s}</head><body>
-<header class="site"><div class="wrap"><a href="index.html" style="font-weight:800;letter-spacing:2px;font-size:19px;color:#e8edf6;text-decoration:none">GYMSOFTWARE<span style="color:#3ba3ff">HQ</span></a><a href="finder.html" style="color:var(--accent);font-weight:600">&#128269; Find your software</a> <span class="muted">· {YEAR}</span></div></header>
+<header class="site"><div class="wrap"><a href="index.html" style="font-weight:800;letter-spacing:2px;font-size:19px;color:#e8edf6;text-decoration:none">GYMSOFTWARE<span style="color:#3ba3ff">HQ</span></a><a href="finder.html" style="color:var(--accent);font-weight:600">&#128269; Find your software</a> <a href="real-cost-calculator.html" style="color:var(--accent);font-weight:600;margin-left:10px">&#128176; Real cost calculator</a> <span class="muted">· {YEAR}</span></div></header>
 <main class="wrap">{body}<footer>© {YEAR} {BRAND}. Independent — not affiliated with any vendor. · <a href="about.html">About</a> · <a href="contact.html">Contact</a> · <a href="affiliate-disclosure.html">Disclosure</a> · <a href="privacy-policy.html">Privacy</a></footer></main></body></html>'''
 
 def cost_para(t):
@@ -231,7 +231,7 @@ _fbody=('<h1>Gym software finder</h1>'
  'var top=scored.filter(function(x){return x.s>0;}).slice(0,4);if(top.length==0)top=scored.slice(0,3);'
  'var h="<h2>Your top matches</h2>";top.forEach(function(x,i){var t=x.t;'
  'h+="<div class=card><h3>"+(i+1)+". "+t.name+"</h3><p class=muted>"+t.price+(t.note?" - "+t.note:"")+"</p>";'
- 'h+="<a class=cta href=\""+t.link+"\""+(t.aff?" rel=\"sponsored nofollow\"":"")+">See "+t.name+" details →</a></div>";});'
+ 'h+="<a class=cta href=\\""+t.link+"\\""+(t.aff?" rel=\\"sponsored nofollow\\"":"")+">See "+t.name+" details →</a></div>";});'
  'h+="<p class=method>Matches are generated from published pricing and best-fit tags. Always confirm current pricing on the vendor site. Some links are affiliate links.</p>";'
  'document.getElementById("fresult").innerHTML=h;document.getElementById("fresult").scrollIntoView({behavior:"smooth"});}'
  '</script>')
@@ -240,6 +240,52 @@ _fqas=[("How do I choose gym software?","Match the tool to your business type (C
  ("Which gym software has transparent pricing?","Some vendors publish clear per-tier pricing while others are quote-only with add-ons; the finder down-ranks tools known for hidden fees or mid-contract increases when you pick 'transparent pricing'.")]
 open(os.path.join(OUT,"finder.html"),"w",encoding="utf-8").write(shell(_ftitle,_fdesc,_fbody,faq_ld(_fqas)))
 print("finder.html written")
+
+
+# --- real cost calculator ---
+_cdata=[]
+for t in TOOLS:
+    link = slug(t["name"]+" pricing "+str(YEAR)+" - real costs and fees")+".html"
+    _cdata.append({"name":t["name"],"pmin":(t.get("price_min_month") if t.get("price_min_month") is not None else None),
+        "pmax":(t.get("price_max_month") if t.get("price_max_month") is not None else None),
+        "pricenote":t.get("price_note","Quote-based"),"note":t.get("real_spend_note",""),"link":link})
+_cjson=json.dumps(_cdata)
+_ctitle="Gym software real cost calculator - beyond the sticker price (%d)"%YEAR
+_cdesc="Estimate the real monthly cost of gym or studio software once typical card-processing fees are added to the published price. Free calculator."
+_cbody=('<h1>Real cost calculator</h1>'
+ '<p class="sub">The quoted price is rarely the number that hits your bank account. Enter your numbers to see a realistic range.</p>'+DISC+
+ '<div class="card">'
+ '<h3>1. Pick a tool</h3><select id="c_tool">'+"".join(f'<option value="{i}">{esc(t["name"])}</option>' for i,t in enumerate(_cdata))+'</select>'
+ '<h3>2. Active members</h3><input id="c_members" type="number" value="150" min="1" style="width:100%;box-sizing:border-box;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:10px 12px;color:var(--ink);font-size:15px">'
+ '<h3>3. Average monthly membership fee you charge ($)</h3><input id="c_fee" type="number" value="100" min="1" style="width:100%;box-sizing:border-box;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:10px 12px;color:var(--ink);font-size:15px">'
+ '<a class="cta" href="#" onclick="runCalc();return false;">Calculate real cost →</a></div>'
+ '<div id="cresult"></div>'
+ '<script>const CTOOLS='+_cjson+';'
+ 'function fmt(n){return "$"+n.toLocaleString(undefined,{maximumFractionDigits:0});}'
+ 'function runCalc(){'
+ 'var t=CTOOLS[document.getElementById("c_tool").value];'
+ 'var mem=parseFloat(document.getElementById("c_members").value)||0;'
+ 'var fee=parseFloat(document.getElementById("c_fee").value)||0;'
+ 'var procRate=0.029, procFlat=0.30;'
+ 'var proc=mem*(fee*procRate+procFlat);'
+ 'var baseLo=(t.pmin!=null)?t.pmin:null, baseHi=(t.pmax!=null)?t.pmax:null;'
+ 'var h="<h2>Estimated real monthly cost - "+t.name+"</h2>";'
+ 'h+="<table><tr><th>Item</th><th>Estimate</th></tr>";'
+ 'h+="<tr><td>Software (published price)</td><td>"+(baseLo!=null?fmt(baseLo)+" - "+fmt(baseHi):t.pricenote)+"</td></tr>";'
+ 'h+="<tr><td>Card processing (typical 2.9% + $0.30/member/mo, if you use the built-in processor)</td><td>~"+fmt(proc)+"</td></tr>";'
+ 'if(baseLo!=null){h+="<tr><td><strong>Estimated total</strong></td><td><strong>"+fmt(baseLo+proc)+" - "+fmt(baseHi+proc)+"/mo</strong></td></tr>";}'
+ 'h+="</table>";'
+ 'if(t.note){h+="<p><strong>What owners actually report:</strong> "+t.note+"</p>";}'
+ 'h+="<p class=method>The 2.9% + $0.30/transaction processing rate is a typical industry benchmark, not this vendor\'s confirmed rate - some platforms bundle processing into the sticker price, others require their own processor at a different rate, and some let you keep your own processor. Always ask the vendor for an all-in quote for your member count before signing. Software price range is published pricing as of '+esc(D["_meta"]["last_verified"])+'.</p>";'
+ 'h+="<a class=cta href=\\""+t.link+"\\">See "+t.name+" full pricing breakdown →</a>";'
+ 'document.getElementById("cresult").innerHTML=h;document.getElementById("cresult").scrollIntoView({behavior:"smooth"});}'
+ '</script>')
+_cqas=[("How much does gym software really cost?","More than the sticker price in most cases - published tiers rarely include card-processing fees, which typically run 2.9%+$0.30 per transaction if you use the vendor's built-in processor. Use the calculator with your member count and average fee to see a realistic range."),
+ ("Do gym software platforms charge for payment processing?","Most do, either bundled into a higher-tier price or billed separately through their in-house processor. A few let you use your own processor at your own negotiated rate. Always ask for an all-in quote."),
+ ("Is card processing cost the only hidden fee?","No - marketplace/lead-gen commissions, onboarding/setup fees, and paid add-ons (payroll, marketing automation, extra locations) also stack on top of the base price. This calculator estimates processing only; check each vendor's pricing page for the rest.")]
+open(os.path.join(OUT,"real-cost-calculator.html"),"w",encoding="utf-8").write(shell(_ctitle,_cdesc,_cbody,faq_ld(_cqas)))
+print("real-cost-calculator.html written")
+
 
 
 # --- sitemap.xml + robots.txt ---
