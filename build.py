@@ -78,6 +78,21 @@ def complaint_para(t):
     return f"The recurring gripes owners raise about {t['name']}: " + ", ".join(cs) + ". Weigh these against your own priorities before committing to an annual contract."
 def fit_line(t): return ", ".join(t.get("best_for",[])) or t.get("target_segment","—")
 
+def cost_example(t):
+    """Worked real-cost example (150 members, $100/mo fee) — same assumptions as
+    real-cost-calculator.html, computed at build time so pricing/vs pages don't
+    need to send the reader elsewhere just to see one concrete number."""
+    lo=t.get("price_min_month"); hi=t.get("price_max_month")
+    proc = 150*(100*0.029+0.30)  # = $480 — matches calculator's default inputs
+    link = f'real-cost-calculator.html?t={esc(t["slug"])}'
+    if lo is not None and hi:
+        return (f'<p><strong>Worked example</strong> — a 150-member gym charging ~$100/mo per member would pay roughly '
+                f'{esc(price(t))} in software fees plus an estimated ~${proc:,.0f}/mo in typical card-processing (2.9% + $0.30/member, if using the built-in processor), '
+                f'for a ballpark all-in total of <strong>${lo+proc:,.0f}–${hi+proc:,.0f}/mo</strong>. '
+                f'<a href="{link}">Plug in your own numbers on the real cost calculator →</a></p>')
+    return (f'<p><strong>Worked example</strong> — {esc(t["name"])} is quote-based, so there is no published base to estimate from. '
+            f'<a href="{link}">Use the real cost calculator</a> once you have a quote to see what card-processing typically adds on top.</p>')
+
 # related best-for links for a tool
 def related_for(t):
     links=[sn for sn in SUB if any(sn.split()[0].lower() in b.lower() for b in t.get("best_for",[]))][:3]
@@ -100,7 +115,7 @@ def vs(a,b,sn=None):
     body=f'''<h1>{esc(title)}</h1><p class="sub">{esc(desc)}</p>{DISC}
 <p>If you run {esc(sn or "a gym or studio")}, the choice between {esc(ta["name"])} and {esc(tb["name"])} usually comes down to price transparency and workflow fit. We put the two side by side on the factors that actually decide the monthly bill.</p>
 {table}
-<h2>Real cost, not sticker price</h2><p>{esc(cost_para(ta))}</p><p>{esc(cost_para(tb))}</p>
+<h2>Real cost, not sticker price</h2><p>{esc(cost_para(ta))}</p><p>{esc(cost_para(tb))}</p>{cost_example(ta)}{cost_example(tb)}
 <h2>What owners actually complain about</h2><h3>{esc(ta["name"])}</h3><p class="complaint">{esc(complaint_para(ta))}</p><h3>{esc(tb["name"])}</h3><p class="complaint">{esc(complaint_para(tb))}</p>
 <h2>Which should you choose{esc(focus)}?</h2>
 <div class="card"><strong>Choose {esc(ta["name"])}</strong> {badge(ta)}<br>if you match: {esc(fit_line(ta))}. Starting {esc(price(ta))}.{cta(ta)}</div>
@@ -138,7 +153,7 @@ def pricing(t):
     ar="".join(f"<tr><td>{esc(x['name'])}</td><td>{esc(price(x))}</td><td>{esc(fit_line(x))}</td></tr>" for x in alts)
     body=f'''<h1>{esc(title)}</h1><p class="sub">{esc(desc)}</p>{DISC}
 <div class="card"><strong>Starting price:</strong> {esc(price(t))}<br><strong>Real-world cost:</strong> {esc(t.get("real_spend_note","varies by size and add-ons"))}<br><strong>Best for:</strong> {esc(fit_line(t))}</div>
-<h2>What you'll actually pay</h2><p>{esc(cost_para(t))}</p>
+<h2>What you'll actually pay</h2><p>{esc(cost_para(t))}</p>{cost_example(t)}
 <h2>What owners complain about</h2><p class="complaint">{esc(complaint_para(t))}</p>
 <h2>Cheaper alternatives to {esc(t['name'])}</h2><table><tr><th>Alternative</th><th>Price</th><th>Best for</th></tr>{ar}</table>
 {cta(t)}{related_for(t)}{METHOD}'''
@@ -156,8 +171,16 @@ for t in TOOLS: pricing(t)
 
 # index + privacy + disclosure pages
 links="".join(f'<li><a href="{slug(tt)}.html">{esc(tt)}</a></li>' for tt,_ in pages)
+TRENDING=[("mindbody-vs-zen-planner-2026.html","Mindbody vs Zen Planner"),
+          ("trainerize-abc-trainerize-pricing-2026-real-costs-and-fees.html","Trainerize pricing"),
+          ("gymdesk-pricing-2026-real-costs-and-fees.html","Gymdesk pricing"),
+          ("best-gym-software-for-martial-arts-bjj-gym-2026.html","Best software for martial arts / BJJ gyms"),
+          ("best-gym-software-for-crossfit-box-2026.html","Best software for CrossFit boxes"),
+          ("mindbody-vs-glofox-abc-fitness-for-boutique-studios-2026.html","Mindbody vs Glofox"),
+          ("best-gym-software-for-bootcamp-group-training-2026.html","Best software for bootcamp / group training")]
+trending_html="".join(f'<li><a href="{href}">{esc(label)}</a></li>' for href,label in TRENDING)
 add(f"{BRAND} — Independent gym software comparisons","Compare gym and studio management software on real pricing and owner feedback.",
-    f"<h1>{BRAND}</h1><p class='sub'>Independent gym &amp; studio software comparisons — real pricing, real owner feedback, no vendor spin.</p><p>We help gym and studio owners cut through opaque pricing and marketing claims. Every guide is built from published pricing and aggregated owner reviews.</p><h2>All guides ({len(pages)})</h2><ul>{links}</ul><p class='muted'><a href='about.html'>About</a> · <a href='contact.html'>Contact</a> · <a href='affiliate-disclosure.html'>Affiliate disclosure</a> · <a href='privacy-policy.html'>Privacy policy</a></p>")
+    f"<h1>{BRAND}</h1><p class='sub'>Independent gym &amp; studio software comparisons — real pricing, real owner feedback, no vendor spin.</p><p>We help gym and studio owners cut through opaque pricing and marketing claims. Every guide is built from published pricing and aggregated owner reviews.</p><h2>🔎 Trending searches</h2><p class='muted'>The comparisons owners are actively searching for right now.</p><ul>{trending_html}</ul><h2>All guides ({len(pages)})</h2><ul>{links}</ul><p class='muted'><a href='about.html'>About</a> · <a href='contact.html'>Contact</a> · <a href='affiliate-disclosure.html'>Affiliate disclosure</a> · <a href='privacy-policy.html'>Privacy policy</a></p>")
 add("Affiliate disclosure","How GymSoftwareHQ makes money and how that affects our rankings.",
     f"<h1>Affiliate disclosure</h1><p>{BRAND} is reader-supported. Some outbound links to software vendors are affiliate or referral links, meaning we may earn a commission or bounty if you sign up through them — at no additional cost to you.</p><p>This never changes our rankings. We rank tools on features, real pricing and aggregated owner feedback, not on how much a vendor pays. Where a tool has no affiliate program, we still include it if it's the right fit. In line with FTC guidance, affiliate links are marked and this disclosure appears on every guide.</p>")
 add("Privacy policy",f"{BRAND} privacy policy.",
@@ -279,6 +302,7 @@ _cbody=('<h1>Real cost calculator</h1>'
  'h+="<p class=method>The 2.9% + $0.30/transaction processing rate is a typical industry benchmark, not this vendor\'s confirmed rate - some platforms bundle processing into the sticker price, others require their own processor at a different rate, and some let you keep your own processor. Always ask the vendor for an all-in quote for your member count before signing. Software price range is published pricing as of '+esc(D["_meta"]["last_verified"])+'.</p>";'
  'h+="<a class=cta href=\\""+t.link+"\\">See "+t.name+" full pricing breakdown →</a>";'
  'document.getElementById("cresult").innerHTML=h;document.getElementById("cresult").scrollIntoView({behavior:"smooth"});}'
+ '(function(){var p=new URLSearchParams(location.search);var slugp=p.get("t");if(!slugp)return;var sel=document.getElementById("c_tool");for(var i=0;i<CTOOLS.length;i++){if(CTOOLS[i].link.indexOf(slugp)>-1||CTOOLS[i].name.toLowerCase().replace(/[^a-z0-9]+/g,"-").indexOf(slugp)>-1){sel.value=i;break;}}runCalc();})();'
  '</script>')
 _cqas=[("How much does gym software really cost?","More than the sticker price in most cases - published tiers rarely include card-processing fees, which typically run 2.9%+$0.30 per transaction if you use the vendor's built-in processor. Use the calculator with your member count and average fee to see a realistic range."),
  ("Do gym software platforms charge for payment processing?","Most do, either bundled into a higher-tier price or billed separately through their in-house processor. A few let you use your own processor at your own negotiated rate. Always ask for an all-in quote."),
