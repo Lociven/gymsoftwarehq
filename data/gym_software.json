@@ -1,7 +1,7 @@
 {
   "_meta": {
     "project": "gym software comparison seed",
-    "last_verified": "2026-09-07",
+    "last_verified": "2026-09-21",
     "verify_cadence": "weekly"
   },
   "tools": [
@@ -269,7 +269,7 @@
       ],
       "price_min_month": 120,
       "price_max_month": 165,
-      "real_spend_note": "Pro 50 ~$120/mo before add-ons; ~$165/mo with nutrition + branded delivery",
+      "real_spend_note": "2026 Pro tier scales ~$23/mo (5 clients) up to ~$225/mo (200 clients); a solo coach with ~50 clients + payments/nutrition add-ons typically lands ~$120–165/mo. Studio Plus/Max plans (~$248–380/mo per location) are separate.",
       "target_segment": "online personal trainers / coaches",
       "common_complaints": [
         "2026 pricing changes / add-ons"
